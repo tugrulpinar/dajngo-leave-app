@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-43a2ot9#p_5*1w9!$9g!&qsdyp(f#y2kt5n%g74$zot5xtu6^i'
+SECRET_KEY = '5gR7?90!=tVpO-43a2ot9#p_5*1w9!$9g!&qsdyp(f#y2kt5n%g74$zot5xtu6^i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fc-leave-app.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -48,6 +48,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -55,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CSRF_COOKIE_SECURE = True
 
 ROOT_URLCONF = 'leave_app.urls'
 
@@ -157,6 +160,7 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 
@@ -166,7 +170,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'jr_notice/static')
 ]
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
