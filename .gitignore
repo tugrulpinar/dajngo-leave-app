@@ -3,4 +3,5 @@ __pycache__/
 
 io.py
 trial.py
-*.txt
+request_POST.txt
+*.sqlite3
