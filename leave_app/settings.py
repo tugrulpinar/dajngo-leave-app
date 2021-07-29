@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-43a2ot9#p_5*1w9!$9g!&qsdyp(f#y2kt5n%g74$zot5xtu6^i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -87,13 +87,24 @@ WSGI_APPLICATION = 'leave_app.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'DEMO_TEST',
+#         'USER': 'postgres',
+#         'PASSWORD': 'tugoappsanddata',
+#         "HOST": 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DEMO_TEST',
-        'USER': 'postgres',
-        'PASSWORD': 'tugoappsanddata',
-        "HOST": 'localhost',
+        'NAME': 'd634a76p4hv0ni',
+        'USER': 'fewknylvftctvg',
+        'PASSWORD': '8aee4e08d87cc9877f10d7ee4af87d94614c6ee7cd54841a0dd1e29a4dc1ed81',
+        "HOST": 'ec2-35-172-16-31.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
