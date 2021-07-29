@@ -1,1 +1,1 @@
-web: gunicorn leave_app.wsgi --log-gile -
+web: gunicorn leave_app.wsgi --log-file -
