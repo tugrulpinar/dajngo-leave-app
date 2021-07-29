@@ -1,0 +1,6 @@
+*.exe
+__pycache__/
+
+io.py
+trial.py
+*.txt

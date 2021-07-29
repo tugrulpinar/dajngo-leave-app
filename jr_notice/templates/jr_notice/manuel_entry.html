@@ -1,0 +1,39 @@
+{% extends 'jr_notice/main.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-body">
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form|crispy}}
+
+                {% if form.errors %}
+                {% for field in form %}
+                {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+                {% endfor %}
+                {% endfor %}
+                {% endif %}
+
+                <select name="appeal_type" id="appeal_type" required>
+                    <option disabled selected value="">Appeal Type</option>
+                    <option value="RPD">RPD</option>
+                    <option value="RAD">RAD</option>
+                    <option value="PRRA">PRRA</option>
+                    <option value="H&C">H&C</option>
+                    <option value="TRV">TRV</option>
+                    <option value="SP">SP</option>
+                    <option value="Deferral">Deferral</option>
+                </select>
+                <input type="submit" name="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

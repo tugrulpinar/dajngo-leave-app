@@ -1,0 +1,19 @@
+
+
+body{
+	background-color: #ebeff5;
+}
+
+
+#total-submissions{
+	background-color: #4cb4c7;
+}
+
+
+#confirmed-submissions{
+	background-color: #35f083;
+}
+
+#pending-submissions{
+	background-color: #f7e70f;
+}

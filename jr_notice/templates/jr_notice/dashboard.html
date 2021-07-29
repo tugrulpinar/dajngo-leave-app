@@ -1,0 +1,73 @@
+{% extends 'jr_notice/main.html' %}
+{% load static %}
+{% block content %}
+{% include 'jr_notice/status.html' %}
+{% load crispy_forms_tags %}
+
+<br>
+<div class="row">
+	<div class="col-md-5">
+		<h5>Upload Form:</h5>
+		<hr>
+		<div class="card card-body">
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{upload_form|crispy }}
+				<hr>
+				<button id="scan_button" class="btn btn-primary" type="submit">Upload</button>
+				<div id="spinners" style="visibility: hidden;">
+					<div class="spinner-border spinner-border-sm"></div>
+					<div class="spinner-grow spinner-grow-sm"></div>
+					<hr>
+				</div>
+				<p id="conf-text" class="font-weight-bold text-success"></p>
+			</form>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<h5>RECENT SUBMISSIONS</h5>
+		<hr>
+		<div class="card card-body">
+
+			<table class="table table-sm">
+				<tr>
+					<th></th>
+					<th>Primary Applicant</th>
+					<th>Appeal Type</th>
+					<th>Submission Date</th>
+					<th>Due Date</th>
+					<th>Confirmation Number</th>
+
+				</tr>
+
+				{% for submission in submissions %}
+				<tr>
+					<td><a class="btn btn-sm btn-info" href="">View</a></td>
+					<td>{{submission.client_first_name}} {{submission.client_last_name}}</td>
+					<td>{{submission.appeal_type}}</td>
+					<td>{{submission.submission_date}}</td>
+					<td>{{submission.due_date}}</td>
+					<td>{{submission.confirmation_number}}</td>
+				</tr>
+				{% endfor %}
+
+
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.getElementById("scan_button").addEventListener("click", btnDisable);
+
+	function btnDisable() {
+
+		document.getElementById("spinners").style.visibility = "visible";
+		document.getElementById("scan_button").className = "btn btn-primary disabled";
+		document.getElementById("conf-text").innerHTML = "Scanning the Pdf file";
+
+	}
+
+</script>
+{% endblock %}
