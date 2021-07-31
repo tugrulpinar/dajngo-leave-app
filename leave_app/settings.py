@@ -105,16 +105,16 @@ CACHES = {
 # }
 
 # PostgreSQL runs locally
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'DEMO_TEST',
-#         'USER': 'postgres',
-#         'PASSWORD': 'tugoappsanddata',
-#         "HOST": 'localhost',
-#         'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'DEMO_TEST',
+        'USER': 'postgres',
+        'PASSWORD': 'tugoappsanddata',
+        "HOST": 'localhost',
+        'PORT': '5432',
+    }
+}
 
 # Heroku Postgres runs online
 # DATABASES = {
@@ -128,20 +128,20 @@ CACHES = {
 #     }
 # }
 
-# DATABASES['default'] = dj_database_url.config(
-#     conn_max_age=600, ssl_require=True)
+DATABASES['default'] = dj_database_url.config(
+    conn_max_age=600, ssl_require=True)
 
 # AWS RDS runs online with PostgreSQL Admin
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'tugrul',
-        'PASSWORD': 'tugrulbabaapps',
-        "HOST": 'database-2-instance-1.cmbohwqdbwec.us-east-1.rds.amazonaws.com',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'tugrul',
+#         'PASSWORD': 'tugrulbabaapps',
+#         "HOST": 'database-2-instance-1.cmbohwqdbwec.us-east-1.rds.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
