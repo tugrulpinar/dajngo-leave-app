@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jr_notice.apps.JrNoticeConfig',
     'django_filters',
+    'django-redis',
     'crispy_forms',
 
 ]
