@@ -288,3 +288,8 @@ def efile_jr_notice(number_of_applicants, first_names, last_names,
 
     except Exception as e:
         print("Problem with writing to the database", e)
+
+    try:
+        os.remove(file_path)
+    except Exception as e:
+        print("Error: ", e)

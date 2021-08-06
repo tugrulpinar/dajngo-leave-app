@@ -18,6 +18,11 @@ import time
 import os
 import io
 
+from rq import Queue, Retry
+from worker import conn
+
+q = Queue(connection=conn)
+
 
 def upload_aws_s3(file_to_upload, user_id, file_name):
     # Connect to AWS S3
@@ -195,14 +200,14 @@ def scanResult(request, scan_id):
         # app_first_names = scan_result_info.first_names.split(",")
         # app_last_names = scan_result_info.last_names.split(",")
 
-        efile_jr_notice(scan_result_info.number_of_applicants,
-                        first_names,
-                        last_names,
-                        scan_result_info.app_type,
-                        filing_party_info,
-                        scan_result_info.file_path,
-                        scan_result_info.sec_email,
-                        filing_party_info.id)
+        # efile_jr_notice(scan_result_info.number_of_applicants,
+        #                 first_names,
+        #                 last_names,
+        #                 scan_result_info.app_type,
+        #                 filing_party_info,
+        #                 scan_result_info.file_path,
+        #                 scan_result_info.sec_email,
+        #                 filing_party_info.id)
 
         # efile_jr_notice(pdf_rec.number_of_applicants,
         #                 pdf_rec.applicant_names,
@@ -213,7 +218,16 @@ def scanResult(request, scan_id):
         #                 "",
         #                 filing_party_info.id)
 
-        os.remove(scan_result_info.file_path)
+        job_result = q.enqueue(efile_jr_notice, scan_result_info.number_of_applicants,
+                               first_names,
+                               last_names,
+                               scan_result_info.app_type,
+                               filing_party_info,
+                               scan_result_info.file_path,
+                               scan_result_info.sec_email,
+                               filing_party_info.id, retry=Retry(max=1))
+
+        # os.remove(scan_result_info.file_path)
         return redirect('home')
 
     context = {'ledger': scan_result_info,

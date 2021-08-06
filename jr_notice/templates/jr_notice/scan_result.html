@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="contianer">
+
     <h2> Negative {{ ledger.app_type }} Decision </h2>
     <hr>
     <h2> Decision Maker: {{ ledger.decision_maker }} </h2>
@@ -35,10 +36,12 @@
 {% endif %}
 
 <form action="" method="post">
-    {% csrf_token %}
-    <p class="text-muted">Based on this information, do you wish you proceed with e-filing?</p>
-    <button class="btn btn-primary" type="submit">Yes, submit</button>
-    <a class="btn btn-warning" href="{% url 'manuel-entry' scan_id %}"> Manually enter data </a>
+    <div class="form-group">
+        {% csrf_token %}
+        <p class="text-muted">Based on this information, do you wish you proceed with e-filing?</p>
+        <button class="btn btn-primary" type="submit">Yes, submit</button>
+        <a class="btn btn-warning" href="{% url 'manuel-entry' scan_id %}"> Manually enter data </a>
+    </div>
 </form>
 
 
