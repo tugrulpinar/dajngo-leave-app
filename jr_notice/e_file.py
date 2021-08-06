@@ -227,27 +227,32 @@ def efile_jr_notice(number_of_applicants, first_names, last_names,
 
     try:
         new_efiling()
+        print("New eiling DONE")
     except Exception as e:
         print("Problem with the initial step", e)
 
     try:
         step_one(appeal_type)
+        print("STEP 1 DONE")
     except Exception as e:
         print("Problem with the first step", e)
 
     try:
         step_two(number_of_applicants, first_names, last_names, appeal_type)
+        print("STEP 2 DONE")
     except Exception as e:
         print("Problem with the second step", e)
 
     try:
         step_three(number_of_applicants, file_path)
+        print("STEP 3 DONE")
     except Exception as e:
         print("Problem with the third step", e)
 
     try:
         confirmation_number = step_four(
             filer_info, appeal_type, secondary_email)
+        print("STEP 4 DONE")
     except Exception as e:
         print("Problem with the fourth step", e)
 
@@ -285,7 +290,7 @@ def efile_jr_notice(number_of_applicants, first_names, last_names,
         t2 = time.time()
         time_took = round(t2-t1, 3)
         submission.timetook_set.create(time_took=time_took)
-
+        print("WROTE TO DB")
     except Exception as e:
         print("Problem with writing to the database", e)
 
