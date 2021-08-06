@@ -91,7 +91,7 @@ def home(request):
     except:
         pass
 
-        # redirect to the account page if filing party info is incomplete
+    # redirect to the account page if filing party info is incomplete
     if not request.user.filingparty.city:
         return redirect('account')
 
@@ -124,14 +124,16 @@ def home(request):
             file_object = io.BytesIO(file.read())
 
             # perform pdf recognition
-            global pdf_rec
-            pdf_rec = PdfRecognizer(file_object)
-            pdf_rec.scan()
-
-            if pdf_rec.applicant_names:
-                # These two come as iterables, we need to convert these to string
-                app_first_names = ",".join(pdf_rec.applicant_names)
-                app_last_names = ",".join(pdf_rec.applicant_lastnames)
+            try:
+                pdf_rec = PdfRecognizer(file_object)
+                pdf_rec.scan()
+                if pdf_rec.applicant_names and pdf_rec.applicant_lastnames:
+                    # These two come as iterables, we need to convert these to string
+                    app_first_names = ",".join(pdf_rec.applicant_names)
+                    app_last_names = ",".join(pdf_rec.applicant_lastnames)
+            except Exception as e:
+                print(e)
+                print("Could not scan the document")
 
             # enter the scan result into db
             scan_result = request.user.filingparty.scanresult_set.create(first_names=app_first_names,
@@ -152,7 +154,7 @@ def home(request):
 
             file_object.close()
             # create a delay effect to show JS
-            time.sleep(2)
+            time.sleep(1.5)
             return HttpResponseRedirect(reverse('scan-result', args=(scan_result.id,)))
 
     # we ask sec_email and pdf_file
@@ -169,20 +171,33 @@ def home(request):
 @ login_required(login_url='login')
 def scanResult(request, scan_id):
 
+    scan_result_info = get_object_or_404(ScanResult, id=scan_id)
+
+    if "," in scan_result_info.first_names:
+        first_names = scan_result_info.first_names.split(",")
+    else:
+        first_names = [scan_result_info.first_names]
+
+    if "," in scan_result_info.last_names:
+        last_names = scan_result_info.last_names.split(",")
+    else:
+        last_names = [scan_result_info.last_names]
+
+    full_names = tuple(zip(first_names, last_names))
+
     if request.method == "POST":
         # scan_result_info = ScanResult.objects.get(id=scan_id)
         # filing_party_info = request.user.filingparty
 
-        scan_result_info = get_object_or_404(ScanResult, id=scan_id)
         filing_party_info = get_object_or_404(
             FilingParty, user_id=request.user.id)
 
-        app_first_names = scan_result_info.first_names.split(",")
-        app_last_names = scan_result_info.last_names.split(",")
+        # app_first_names = scan_result_info.first_names.split(",")
+        # app_last_names = scan_result_info.last_names.split(",")
 
         efile_jr_notice(scan_result_info.number_of_applicants,
-                        app_first_names,
-                        app_last_names,
+                        first_names,
+                        last_names,
                         scan_result_info.app_type,
                         filing_party_info,
                         scan_result_info.file_path,
@@ -201,7 +216,8 @@ def scanResult(request, scan_id):
         os.remove(scan_result_info.file_path)
         return redirect('home')
 
-    context = {'ledger': pdf_rec, "scan_id": scan_id}
+    context = {'ledger': scan_result_info,
+               "full_names": full_names, "scan_id": scan_id}
     return render(request, 'jr_notice/scan_result.html', context)
 
 

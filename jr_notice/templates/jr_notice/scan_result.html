@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="contianer">
-    <h2> Negative {{ ledger.application_type }} Decision </h2>
+    <h2> Negative {{ ledger.app_type }} Decision </h2>
     <hr>
     <h2> Decision Maker: {{ ledger.decision_maker }} </h2>
     <hr>
@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for item in ledger.app_fullname %}
+            {% for item in full_names %}
             <tr>
                 <td>{{ item.0 }}</td>
                 <td>{{ item.1 }}</td>
@@ -28,8 +28,8 @@
     </table>
 </div>
 
-{% if ledger.errors %}
-{% for item in ledger.errors %}
+{% if ledger.scan_errors %}
+{% for item in ledger.scan_errors %}
 <p> {{ item }} </p>
 {% endfor %}
 {% endif %}
