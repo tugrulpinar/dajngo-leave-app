@@ -117,16 +117,16 @@ DATABASES = {
 # }
 
 # Heroku Postgres runs online
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'd634a76p4hv0ni',
-#         'USER': 'fewknylvftctvg',
-#         'PASSWORD': '8aee4e08d87cc9877f10d7ee4af87d94614c6ee7cd54841a0dd1e29a4dc1ed81',
-#         "HOST": 'ec2-35-172-16-31.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd9udkjsscuj09u',
+        'USER': 'lcgmgobxhpnjyl',
+        'PASSWORD': '09e79413a5ae82716a92fac1b0c1d4209695c7c463285b5424a3a987b8c36055',
+        "HOST": 'ec2-44-196-250-191.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 DATABASES['default'] = dj_database_url.config(
     conn_max_age=600, ssl_require=True)
