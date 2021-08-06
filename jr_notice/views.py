@@ -84,16 +84,16 @@ def logoutUser(request):
 @login_required(login_url='login')
 def home(request):
 
-    # redirect to the account page if filing party info is incomplete
-    if not request.user.filingparty.city:
-        return redirect('account')
-
     try:
         # get all the submissions by the user by descending order
         submissions = request.user.filingparty.submission_set.all().order_by(
             "-submission_date_db")
     except:
         pass
+
+        # redirect to the account page if filing party info is incomplete
+    if not request.user.filingparty.city:
+        return redirect('account')
 
     total_submissions = submissions.count()
     # confirmed_submissions = total_submissions.filter(

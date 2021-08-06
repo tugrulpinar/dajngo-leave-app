@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '5gR7?90!=tVpO-43a2ot9#p_5*1w9!$9g!&qsdyp(f#y2kt5n%g74$zot5xtu6^i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['fc-leave-app.herokuapp.com', '127.0.0.1']
 
@@ -97,12 +97,12 @@ CACHES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # SQLite runs locally
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # PostgreSQL runs locally
 # DATABASES = {
@@ -117,19 +117,19 @@ CACHES = {
 # }
 
 # Heroku Postgres runs online
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd9udkjsscuj09u',
-        'USER': 'lcgmgobxhpnjyl',
-        'PASSWORD': '09e79413a5ae82716a92fac1b0c1d4209695c7c463285b5424a3a987b8c36055',
-        "HOST": 'ec2-44-196-250-191.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd9udkjsscuj09u',
+#         'USER': 'lcgmgobxhpnjyl',
+#         'PASSWORD': '09e79413a5ae82716a92fac1b0c1d4209695c7c463285b5424a3a987b8c36055',
+#         "HOST": 'ec2-44-196-250-191.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
-DATABASES['default'] = dj_database_url.config(
-    conn_max_age=600, ssl_require=True)
+# DATABASES['default'] = dj_database_url.config(
+#     conn_max_age=600, ssl_require=True)
 
 # AWS RDS runs online with PostgreSQL Admin
 # DATABASES = {
@@ -205,8 +205,8 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
-CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
+# CSRF_COOKIE_SECURE = True
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
