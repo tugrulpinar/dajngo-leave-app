@@ -268,11 +268,12 @@ def manuelEntry(request, scan_id):
 
 @ login_required(login_url='login')
 def accountSettings(request):
-    filing_ind = request.user.filingparty
-    form = FilingPartyForm(instance=filing_ind)
+    filing_party_info = get_object_or_404(
+        FilingParty, user_id=request.user.id)
+    form = FilingPartyForm(instance=filing_party_info)
 
     if request.method == 'POST':
-        form = FilingPartyForm(request.POST, instance=filing_ind)
+        form = FilingPartyForm(request.POST, instance=filing_party_info)
         if form.is_valid():
             form.save()
 
