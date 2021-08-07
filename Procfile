@@ -1,2 +1,2 @@
 web: gunicorn leave_app.wsgi --log-file -
-worker: python worker.py
+worker: python jr_notice/worker.py
