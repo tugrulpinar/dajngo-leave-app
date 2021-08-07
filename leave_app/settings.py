@@ -40,11 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jr_notice.apps.JrNoticeConfig',
-    'django_filters',
-    'django_redis',
     'crispy_forms',
-
 ]
+
+# 'django_filters',
+# 'django_redis',
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
