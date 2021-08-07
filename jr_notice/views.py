@@ -209,15 +209,6 @@ def scanResult(request, scan_id):
         #                 scan_result_info.sec_email,
         #                 filing_party_info.id)
 
-        # efile_jr_notice(pdf_rec.number_of_applicants,
-        #                 pdf_rec.applicant_names,
-        #                 pdf_rec.applicant_lastnames,
-        #                 pdf_rec.application_type,
-        #                 filing_party_info,
-        #                 scan_result_info.file_path,
-        #                 "",
-        #                 filing_party_info.id)
-
         job_result = q.enqueue(efile_jr_notice, scan_result_info.number_of_applicants,
                                first_names,
                                last_names,
