@@ -159,7 +159,7 @@ def home(request):
 
             file_object.close()
             # create a delay effect to show JS
-            time.sleep(1.5)
+            time.sleep(0.5)
             return HttpResponseRedirect(reverse('scan-result', args=(scan_result.id,)))
 
     # we ask sec_email and pdf_file
