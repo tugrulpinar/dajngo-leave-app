@@ -213,7 +213,7 @@ def scanResult(request, scan_id):
                                first_names,
                                last_names,
                                scan_result_info.app_type,
-                               filing_party_info,
+                               "",
                                scan_result_info.file_path,
                                scan_result_info.sec_email,
                                filing_party_info.id, retry=Retry(max=1))
