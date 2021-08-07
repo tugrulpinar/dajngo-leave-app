@@ -209,11 +209,17 @@ def scanResult(request, scan_id):
         #                 scan_result_info.sec_email,
         #                 filing_party_info.id)
 
+        filer_info = [filing_party_info.first_name, filing_party_info.last_name,
+                      filing_party_info.address, filing_party_info.city,
+                      filing_party_info.province, filing_party_info.postal_code,
+                      filing_party_info.phone, filing_party_info.email,
+                      filing_party_info.language, filing_party_info.registry_office]
+
         job_result = q.enqueue(efile_jr_notice, scan_result_info.number_of_applicants,
                                first_names,
                                last_names,
                                scan_result_info.app_type,
-                               "",
+                               filer_info,
                                scan_result_info.file_path,
                                scan_result_info.sec_email,
                                filing_party_info.id, retry=Retry(max=1))

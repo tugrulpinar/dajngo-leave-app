@@ -179,17 +179,17 @@ def step_three(number_of_applicants, file_path):
 # STEP 4
 def step_four(filer_info, appeal_type, sec_email):
     # FILING INFORMATION
-    fill_out("firstName", filer_info.first_name)
-    fill_out("lastName", filer_info.last_name)
-    fill_out("Address", filer_info.address)
-    fill_out("City", filer_info.city)
-    drop_down_selection("provinceDDL", filer_info.province)
-    fill_out("postalCode", filer_info.postal_code)
-    fill_out("phoneNumber", filer_info.phone)
-    fill_out("priEmail", filer_info.email)
+    fill_out("firstName", filer_info[0])
+    fill_out("lastName", filer_info[1])
+    fill_out("Address", filer_info[2])
+    fill_out("City", filer_info[3])
+    drop_down_selection("provinceDDL", filer_info[4])
+    fill_out("postalCode", filer_info[5])
+    fill_out("phoneNumber", filer_info[6])
+    fill_out("priEmail", filer_info[7])
     fill_out("secEmail", sec_email)
-    drop_down_selection("languageDDL", filer_info.language)
-    drop_down_selection("regOfficeDDL", filer_info.registry_office)
+    drop_down_selection("languageDDL", filer_info[8])
+    drop_down_selection("regOfficeDDL", filer_info[9])
 
     if appeal_type == "Deferral":
         find_click("isUrgent")
