@@ -8,6 +8,10 @@ from django.forms import inlineformset_factory
 from .pdf_recognizer import PdfRecognizer
 from .e_file import efile_jr_notice
 
+import django
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", __file__)
+django.setup()
+
 # Create your views here.
 from .models import *
 from .forms import *
@@ -21,9 +25,7 @@ import io
 from rq import Queue, Retry
 from .worker import conn
 
-import django
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", __file__)
-django.setup()
+
 
 q = Queue(connection=conn)
 
