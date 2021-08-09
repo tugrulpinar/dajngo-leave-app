@@ -218,4 +218,4 @@ SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE = True
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
