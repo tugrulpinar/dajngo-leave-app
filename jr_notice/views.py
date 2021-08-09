@@ -21,6 +21,10 @@ import io
 from rq import Queue, Retry
 from .worker import conn
 
+import django
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", __file__)
+django.setup()
+
 q = Queue(connection=conn)
 
 

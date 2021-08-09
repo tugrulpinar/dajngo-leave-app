@@ -15,9 +15,9 @@ from pathlib import Path
 import django_heroku
 import os
 
-import django
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", __file__)
-django.setup()
+# import django
+# # os.environ.setdefault("DJANGO_SETTINGS_MODULE", __file__)
+# django.setup()
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'leave_app.settings'
 
