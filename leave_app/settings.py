@@ -15,9 +15,9 @@ from pathlib import Path
 import django_heroku
 import os
 
-# import django
+import django
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", __file__)
-# django.setup()
+django.setup()
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'leave_app.settings'
 
@@ -218,4 +218,4 @@ SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE = True
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
