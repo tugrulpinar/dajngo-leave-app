@@ -123,12 +123,14 @@ def home(request):
             secondary_email = request.POST["secondary_email"]
 
             # save the file on disk - until we find a better solution
-            fs = FileSystemStorage()
             file_name = "{}_{}".format(request.user.filingparty.id, file.name)
-            fs.save(file_name, file)
+            # fs = FileSystemStorage()
+            # fs.save(file_name, file)
 
-            file_path = os.path.join(
-                os.getcwd(), "jr_notice", "static", "jr_notice", "pdf", file_name)
+            # file_path = os.path.join(
+            #     os.getcwd(), "jr_notice", "static", "jr_notice", "pdf", file_name)
+
+            file_path = os.path.join(os.getcwd(), file_name)
 
             # convert the bytes into file-like object
             file.seek(0)
@@ -146,7 +148,7 @@ def home(request):
                 print(e)
                 print("Could not scan the document")
 
-            # enter the scan result into db
+            # enter the scan result into db even it is faulty
             scan_result = request.user.filingparty.scanresult_set.create(first_names=app_first_names,
                                                                          last_names=app_last_names,
                                                                          number_of_applicants=pdf_rec.number_of_applicants,
