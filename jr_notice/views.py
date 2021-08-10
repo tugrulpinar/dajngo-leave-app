@@ -24,8 +24,6 @@ import io
 from rq import Queue, Retry
 from .worker import conn
 
-
-
 q = Queue(connection=conn)
 
 

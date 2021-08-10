@@ -1,4 +1,5 @@
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.remote.file_detector import LocalFileDetector
 from cryptography.fernet import Fernet
 from datetime import datetime, timedelta
 from selenium import webdriver
@@ -228,6 +229,7 @@ def efile_jr_notice(number_of_applicants, first_names, last_names,
     t1 = time.time()
     global browser
     browser = webdriver.Chrome()
+    browser.file_detector = LocalFileDetector()
     browser.get("https://efiling.fct-cf.gc.ca/en/online-access/e-filing-intro")
     browser.implicitly_wait(15)
 
