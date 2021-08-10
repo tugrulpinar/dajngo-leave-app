@@ -9,7 +9,6 @@ from .pdf_recognizer import PdfRecognizer
 from .e_file import efile_jr_notice
 
 import django
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", __file__)
 django.setup()
 
 # Create your views here.
@@ -131,7 +130,7 @@ def home(request):
             #     os.getcwd(), "jr_notice", "static", "jr_notice", "pdf", file_name)
 
             with open(file_name, "wb") as f:
-                f.write(file)
+                f.write(file.read())
 
             file_path = os.path.join(os.getcwd(), file_name)
 
