@@ -132,7 +132,7 @@ def home(request):
             with open(file_name, "wb") as f:
                 f.write(file.read())
 
-            file_path = os.path.join(os.getcwd(), file_name)
+            file_path = os.path.join(os.getcwd(), "jr_notice", file_name)
 
             print(os.path.exists(file_path))
 
