@@ -121,16 +121,11 @@ def home(request):
 
             # save the file on disk - until we find a better solution
             file_name = "{}_{}".format(request.user.filingparty.id, file.name)
-            # fs = FileSystemStorage()
-            # fs.save(file_name, file)
+            fs = FileSystemStorage()
+            fs.save(file_name, file)
 
-            # file_path = os.path.join(
-            #     os.getcwd(), "jr_notice", "static", "jr_notice", "pdf", file_name)
-
-            with open(file_name, "wb") as f:
-                f.write(file.read())
-
-            file_path = os.path.join(os.getcwd(), "jr_notice", file_name)
+            file_path = os.path.join(
+                os.getcwd(), "jr_notice", "static", "jr_notice", "pdf", file_name)
 
             print(os.path.exists(file_path))
 
