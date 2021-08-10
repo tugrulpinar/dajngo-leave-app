@@ -7,6 +7,12 @@ import time
 import re
 import os
 import io
+
+import django
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", __file__)
+django.setup()
+
+
 from .models import *
 
 
