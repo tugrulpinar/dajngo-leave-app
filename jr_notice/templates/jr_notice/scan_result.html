@@ -2,16 +2,56 @@
 {% load static %}
 {% block content %}
 
-<div class="contianer">
-
-    <h2> Negative {{ ledger.app_type }} Decision </h2>
+<div class="contianer mt-5 mb-3">
+    <div class="card">
+        <div class="card-header">
+            <h2> Negative {{ ledger.app_type }} Decision </h2>
+            <h2> Decision Maker: {{ ledger.decision_maker }} </h2>
+            <h2> {{ ledger.number_of_applicants }} Applicant(s)</h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in full_names %}
+                    <tr>
+                        <td>{{ item.0 }}</td>
+                        <td>{{ item.1 }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            {% if ledger.scan_errors %}
+            {% for item in ledger.scan_errors %}
+            <p> {{ item }} </p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <form action="" method="post">
+            <div class="form-group">
+                {% csrf_token %}
+                <p class="text-muted">Based on this information, do you wish you proceed with e-filing?</p>
+                <button class="btn btn-primary" type="submit">Yes, submit</button>
+                <a class="btn btn-warning" href="{% url 'manuel-entry' scan_id %}"> Manually enter data </a>
+            </div>
+        </form>
+    </div>
+</div>
+    <!-- <h2> Negative {{ ledger.app_type }} Decision </h2>
     <hr>
     <h2> Decision Maker: {{ ledger.decision_maker }} </h2>
     <hr>
     <h2> {{ ledger.number_of_applicants }} Applicant(s)</h2>
     <hr>
-    <p></p>
-    <table class="table table-striped mb-5">
+    <p></p> -->
+    <!-- <table class="table table-sm table-striped mb-5">
         <thead>
             <tr>
                 <th>Firstname</th>
@@ -26,23 +66,7 @@
             </tr>
             {% endfor %}
         </tbody>
-    </table>
-</div>
-
-{% if ledger.scan_errors %}
-{% for item in ledger.scan_errors %}
-<p> {{ item }} </p>
-{% endfor %}
-{% endif %}
-
-<form action="" method="post">
-    <div class="form-group">
-        {% csrf_token %}
-        <p class="text-muted">Based on this information, do you wish you proceed with e-filing?</p>
-        <button class="btn btn-primary" type="submit">Yes, submit</button>
-        <a class="btn btn-warning" href="{% url 'manuel-entry' scan_id %}"> Manually enter data </a>
-    </div>
-</form>
+    </table> -->
 
 
 {% endblock %}

@@ -171,6 +171,9 @@ def step_three(number_of_applicants, file_path):
     for x in range(number_of_applicants + 1):
         find_click(f"filer_0_{x}")
 
+    print(file_path)
+    print(os.path.exists(file_path))
+
     # ATTACH THE DOCUMENT
     upload_document = browser.find_element_by_id("file_0")
     try:
