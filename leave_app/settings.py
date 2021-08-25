@@ -200,13 +200,12 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'jr_notice/static/jr_notice/pdf')
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'jr_notice/static')
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'jr_notice/static/jr_notice/pdf')
 
 
 # Default primary key field type
