@@ -29,36 +29,47 @@
 		<h5>RECENT SUBMISSIONS</h5>
 		<hr>
 		<div class="card card-body">
-
+			<input class="form-control" id="myInput" type="text" placeholder="Search..">
+			<br>
 			<table class="table table-sm table-hover">
-				<tr>
-					<th></th>
-					<th>Primary Applicant</th>
-					<th>Appeal Type</th>
-					<th>Submission Date</th>
-					<th>Due Date</th>
-					<th>Confirmation Number</th>
+				<thead>
+					<tr>
+						<th></th>
+						<th>Primary Applicant</th>
+						<th>Appeal Type</th>
+						<th>Submission Date</th>
+						<th>Due Date</th>
+						<th>Confirmation Number</th>
+					</tr>
+				</thead>
 
-				</tr>
-
-				{% for submission in submissions %}
-				<tr>
-					<td><a class="btn btn-sm btn-info" href="">View</a></td>
-					<td>{{submission.client_first_name}} {{submission.client_last_name}}</td>
-					<td>{{submission.appeal_type}}</td>
-					<td>{{submission.submission_date}}</td>
-					<td>{{submission.due_date}}</td>
-					<td>{{submission.confirmation_number}}</td>
-				</tr>
-				{% endfor %}
-
-
+				<tbody id="myTable">
+					{% for submission in submissions %}
+					<tr>
+						<td><a class="btn btn-sm btn-info" href="">View</a></td>
+						<td>{{submission.client_first_name}} {{submission.client_last_name}}</td>
+						<td>{{submission.appeal_type}}</td>
+						<td>{{submission.submission_date}}</td>
+						<td>{{submission.due_date}}</td>
+						<td>{{submission.confirmation_number}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
 			</table>
 		</div>
 	</div>
 </div>
 
 <script>
+	$(document).ready(function(){
+	$("#myInput").on("keyup", function() {
+		var value = $(this).val().toLowerCase();
+		$("#myTable tr").filter(function() {
+		$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+	});
+
 	document.getElementById("scan_button").addEventListener("click", btnDisable);
 
 	function btnDisable() {

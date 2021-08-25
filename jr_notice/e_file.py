@@ -179,7 +179,7 @@ def step_three(number_of_applicants, file_path):
     except Exception as e:
         print(str(e))
         print("Cannot find the document")
-
+    
     find_click("Submit-Step-3")
 
 
