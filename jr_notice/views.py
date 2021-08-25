@@ -126,7 +126,8 @@ def home(request):
 
             file_path = os.path.join(
                 os.getcwd(), "jr_notice", "static", "jr_notice", "pdf", file_name)
-
+            
+            print(file_path)
             print(os.path.exists(file_path))
 
             # convert the bytes into file-like object
